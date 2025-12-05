@@ -43,15 +43,15 @@ class CampaignController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'disaster_type' => 'required|in:flood,earthquake,tsunami,landslide,fire,other',
-            'location' => 'required|string|max:255',
-            'target_amount' => 'required|numeric|min:0',
+            'title'          => 'required|string|max:255',
+            'description'    => 'required|string',
+            'disaster_type'  => 'required|in:flood,earthquake,tsunami,landslide,fire,other',
+            'location'       => 'required|string|max:255',
+            'target_amount'  => 'required|numeric|min:0',
             'collected_amount' => 'nullable|numeric|min:0',
-            'status' => 'required|in:open,closed,completed',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'status'         => 'required|in:open,closed,completed',
+            'start_date'     => 'required|date',
+            'end_date'       => 'nullable|date|after_or_equal:start_date',
         ]);
 
         if (!isset($data['collected_amount'])) {
@@ -73,15 +73,15 @@ class CampaignController extends Controller
         $campaign = Campaign::findOrFail($id);
 
         $data = $request->validate([
-            'title' => 'sometimes|required|string|max:255',
-            'description' => 'sometimes|required|string',
-            'disaster_type' => 'sometimes|required|in:flood,earthquake,tsunami,landslide,fire,other',
-            'location' => 'sometimes|required|string|max:255',
-            'target_amount' => 'sometimes|required|numeric|min:0',
+            'title'          => 'sometimes|required|string|max:255',
+            'description'    => 'sometimes|required|string',
+            'disaster_type'  => 'sometimes|required|in:flood,earthquake,tsunami,landslide,fire,other',
+            'location'       => 'sometimes|required|string|max:255',
+            'target_amount'  => 'sometimes|required|numeric|min:0',
             'collected_amount' => 'sometimes|numeric|min:0',
-            'status' => 'sometimes|required|in:open,closed,completed',
-            'start_date' => 'sometimes|required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'status'         => 'sometimes|required|in:open,closed,completed',
+            'start_date'     => 'sometimes|required|date',
+            'end_date'       => 'nullable|date|after_or_equal:start_date',
         ]);
 
         $campaign->update($data);
