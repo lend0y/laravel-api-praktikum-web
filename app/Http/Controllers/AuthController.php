@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-    // ==========================
-    // REGISTER
-    // ==========================
     public function register(Request $request)
     {
         $request->validate([
@@ -32,9 +29,6 @@ class AuthController extends Controller
         ], 201);
     }
 
-    // ==========================
-    // LOGIN (JWT)
-    // ==========================
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -51,17 +45,11 @@ class AuthController extends Controller
         ]);
     }
 
-    // ==========================
-    // GET USER DATA
-    // ==========================
     public function me()
     {
         return response()->json(auth('api')->user());
     }
 
-    // ==========================
-    // LOGOUT (invalidate token)
-    // ==========================
     public function logout()
     {
         auth('api')->logout();

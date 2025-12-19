@@ -20,6 +20,7 @@ class Campaign extends Model
         'status',
         'start_date',
         'end_date',
+        'image',
     ];
 
     protected $casts = [
